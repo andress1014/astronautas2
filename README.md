@@ -76,12 +76,6 @@ La documentación de la API está disponible en Swagger. Una vez que el proyecto
 - **PUT /products/:id**: Actualiza un producto por su ID.
 - **DELETE /products/:id**: Elimina (desactiva) un producto por su ID.
 
-## Recursos adicionales
-
-- [Documentación oficial de NestJS](https://docs.nestjs.com)
-- [Canal de Discord de NestJS](https://discord.gg/G7Qnnhy)
-- [Cursos oficiales de NestJS](https://courses.nestjs.com)
-
 ## Licencia
 
 Este proyecto está bajo la licencia [MIT](https://github.com/nestjs/nest/blob/master/LICENSE).
