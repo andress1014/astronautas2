@@ -18,7 +18,7 @@ describe('AuthController', () => {
 
   describe('login', () => {
     it('should call authService.login with the correct parameters and return the response', async () => {
-      const loginDto: LoginDto = { _id: 'mockId', email: 'test@example.com', password: 'password123' };
+      const loginDto: LoginDto = { email: 'test@example.com', password: 'password123' };
       const mockResponse = {
         accessToken: 'mockToken',
         user: { id: 'mockUserId', email: 'test@example.com', fullName: "sadsa" },

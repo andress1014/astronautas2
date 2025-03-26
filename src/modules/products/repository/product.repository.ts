@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, HydratedDocument, Types } from 'mongoose';
 import { Product } from '../../../models/product/product.schema';
@@ -27,11 +27,17 @@ export class ProductRepository {
       .exec();
   }
 
-  async findById(id: string): Promise<HydratedDocument<Product> | null> {
-    return this.productModel
+  async findById(id: string): Promise<HydratedDocument<Product>> {
+    const product = await this.productModel
       .findById(new Types.ObjectId(id))
       .populate('owner', 'email fullName')
       .exec();
+
+    if (!product) {
+      throw new NotFoundException('Product not found');
+    }
+
+    return product;
   }
 
   async create(data: Partial<Product>): Promise<HydratedDocument<Product>> {
@@ -42,6 +48,13 @@ export class ProductRepository {
     id: string,
     data: Partial<Product>,
   ): Promise<HydratedDocument<Product> | null> {
+    const validateActiveProd = await this.productModel
+      .findById(new Types.ObjectId(id))
+      .where({ isActive: true });
+
+    if (!validateActiveProd) {
+      throw new NotFoundException('Product not found');
+    }
     return this.productModel
       .findByIdAndUpdate(new Types.ObjectId(id), data, { new: true })
       .populate('owner', 'email fullName')

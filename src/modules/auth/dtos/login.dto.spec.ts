@@ -4,7 +4,6 @@ import { LoginDto } from './login.dto';
 describe('LoginDto', () => {
   it('should validate a valid LoginDto', async () => {
     const dto = new LoginDto();
-    dto._id = '1234567890';
     dto.email = 'user@email.com';
     dto.password = '123456';
 
@@ -14,7 +13,6 @@ describe('LoginDto', () => {
 
   it('should fail validation if email is invalid', async () => {
     const dto = new LoginDto();
-    dto._id = '1234567890';
     dto.email = 'invalid-email';
     dto.password = '123456';
 
@@ -25,7 +23,6 @@ describe('LoginDto', () => {
 
   it('should fail validation if password is too short', async () => {
     const dto = new LoginDto();
-    dto._id = '1234567890';
     dto.email = 'user@email.com';
     dto.password = '123';
 
@@ -36,7 +33,6 @@ describe('LoginDto', () => {
 
   it('should pass validation with only required fields', async () => {
     const dto = new LoginDto();
-    dto._id = '1234567890';
     dto.email = 'user@email.com';
     dto.password = '123456';
 

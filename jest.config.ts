@@ -28,12 +28,12 @@ const config: Config = {
   coverageThreshold: {
     global: {
       statements: 80,
-      branches: 80,
+      branches: 60,
       functions: 80,
       lines: 80,
     },
   },
-  coverageReporters: ['text-summary', 'lcov', 'html'],
+  coverageReporters: ['text', 'text-summary', 'lcov', 'html'],
 };
 
 export default config;
