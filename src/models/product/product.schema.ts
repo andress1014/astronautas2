@@ -1,6 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Schema as MongooseSchema, Types } from 'mongoose';
-import { User } from '../user/user.schema';
 
 @Schema({ timestamps: true })
 export class Product {
@@ -15,6 +14,9 @@ export class Product {
 
   @Prop({ default: true })
   isActive: boolean;
+
+  @Prop({ default: false })
+  validated: boolean;
 
   createdAt: Date;
   updatedAt: Date;

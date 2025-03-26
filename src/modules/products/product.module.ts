@@ -6,10 +6,12 @@ import { ProductModel } from '../../models/product/product.model';
 import { EventEmitterModule } from '@nestjs/event-emitter';
 import { User } from 'src/models/user/user.schema';
 import { UserModel } from 'src/models/user/user.model';
+import { CoreIntegrationService } from './external/coreIntegration.service';
+import { ProductListener } from './listener/product.listener';
 
 @Module({
   imports: [ProductModel, UserModel, EventEmitterModule.forRoot()],
   controllers: [ProductController],
-  providers: [ProductService, ProductRepository],
+  providers: [ProductService, ProductRepository, CoreIntegrationService, ProductListener],
 })
 export class ProductModule {}
