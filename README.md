@@ -16,7 +16,7 @@ API REST desarrollada con NestJS que proporciona autenticación de usuarios y ge
 
 1. Clonar el repositorio:
 ```bash
-git clone <URL_DEL_REPOSITORIO>
+git clone https://github.com/andress1014/astronautas2.git
 ```
 
 2. Copiar las variables de entorno:
@@ -59,11 +59,10 @@ npm run test
 
 ## 📖 Documentación de la API
 
-La documentación de la API está disponible en Swagger. Una vez que el proyecto esté en ejecución, accede a la URL:
+La documentación de la API está disponible en Swagger. Una vez que el proyecto esté en ejecución, accede a las siguientes URLs:
 
-```
-http://localhost:3000/api
-```
+- Documentación principal: `http://localhost:3000/api`
+- Documentación extendida: `http://localhost:3000/api/docs`
 
 ## 📚 Endpoints
 
