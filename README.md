@@ -26,6 +26,24 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
+# Atronautas API
+
+API REST desarrollada con NestJS que proporciona autenticación de usuarios y gestión de productos.
+
+## 🚀 Requisitos
+
+- Node.js v18+
+- Docker y Docker Compose
+- MongoDB
+
+## 🛠️ Instalación
+
+1. Clonar el repositorio
+2. Copiar variables de entorno:
+```bash
+cp .env.example .env
+```
+
 ## Project setup
 
 ```bash
@@ -40,9 +58,6 @@ $ npm run start
 
 # watch mode
 $ npm run start:dev
-
-# production mode
-$ npm run start:prod
 ```
 
 ## Run tests
@@ -50,12 +65,6 @@ $ npm run start:prod
 ```bash
 # unit tests
 $ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
 ```
 
 ## Deployment
