@@ -16,9 +16,10 @@ import { mapProductToResponse } from '../utils/product.mapper';
 import { Types } from 'mongoose';
 import { UpdateProductDto } from '../dtos/updateProduct.dto';
 import { CoreIntegrationService } from '../external/coreIntegration.service'; // 🆕 nuevo servicio externo
+import { IProductService } from './product.interface';
 
 @Injectable()
-export class ProductService {
+export class ProductService implements IProductService {
   private readonly logger = new Logger(ProductService.name);
 
   constructor(
