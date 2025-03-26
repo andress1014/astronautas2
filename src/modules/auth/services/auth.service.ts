@@ -9,8 +9,8 @@ import { AuthRepository } from '../repository/auth.repository';
 import { RegisterDto } from '../dtos/register.dto';
 import { LoginDto } from '../dtos/login.dto';
 import { IAuthService } from './auth.interface';
-import { LoginResponse } from '../types/login.response';
-import { RegisterResponse } from '../types/register.response';
+import { LoginResponse, LoginResponseMessage } from '../types/login.response';
+import { RegisterResponse, RegisterResponseMessage } from '../types/register.response';
 
 @Injectable()
 export class AuthService implements IAuthService {
@@ -22,7 +22,7 @@ export class AuthService implements IAuthService {
   async register(dto: RegisterDto): Promise<RegisterResponse> {
     const existingUser = await this.authRepo.findByEmail(dto.email);
     if (existingUser) {
-      throw new ConflictException('The email is already in use');
+      throw new ConflictException(RegisterResponseMessage.USER_ALREADY_EXISTS);
     }
 
     const hashedPassword = await bcrypt.hash(dto.password, 10);
@@ -34,7 +34,7 @@ export class AuthService implements IAuthService {
     });
 
     return {
-      message: 'User registered successfully',
+      message: RegisterResponseMessage.USER_REGISTERED_SUCCESSFULLY,
       user: {
         _id: user._id as string,
         email: user.email,
@@ -48,12 +48,12 @@ export class AuthService implements IAuthService {
   async login(dto: LoginDto): Promise<LoginResponse> {
     const user = await this.authRepo.findByEmail(dto.email);
     if (!user) {
-      throw new UnauthorizedException('Credentials invalid');
+      throw new UnauthorizedException(LoginResponseMessage.INVALID_CREDENTIALS);
     }
 
     const isPasswordValid = await bcrypt.compare(dto.password, user.password);
     if (!isPasswordValid) {
-      throw new UnauthorizedException('Credentials invalid');
+      throw new UnauthorizedException(LoginResponseMessage.INVALID_CREDENTIALS);
     }
 
     const payload = {
@@ -64,6 +64,7 @@ export class AuthService implements IAuthService {
     const accessToken = this.jwtService.sign(payload);
 
     return {
+      message: LoginResponseMessage.LOGIN_SUCCESS,
       accessToken,
       user: {
         id: user._id as string,
